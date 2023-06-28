@@ -15,7 +15,7 @@ const connectDb = async () => {
             port: process.env.PGPORT,
         });
      await pool.connect()
-
+        console.log('pool connected')
         await pool.end()
     } catch (error) {
         console.log(error)
