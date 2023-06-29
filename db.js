@@ -1,8 +1,16 @@
 const { Pool } = require('pg');
-const itemsPool = new Pool({
-    connectionString: process.env.DBCONFIGLINK,
-    ssl: {
-        rejectUnauthorized: false
+const dbConnection = async () =>{
+    try{
+        const itemsPool = new Pool({
+            connectionString: process.env.DBCONFIGLINK,
+            ssl: {
+                rejectUnauthorized: false
+            }
+        });
+        itemsPool.connect()
+        console.log('connection')
+    }catch (e) {
+        console.log(e)
     }
-});
-module.exports = itemsPool;
+}
+module.exports = dbConnection;
